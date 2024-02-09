@@ -42,6 +42,15 @@
         latitude:28.396837
         };
 
+        const popupTemplate = {
+        title: "{Name}",
+        content: "{Description}"
+        }
+        const attributes = {
+        Name: "Kennedy Space Center",
+        Description: "February 22, 2024 - SpaceX sends crew to the International Space Station."
+        };
+
         const simpleMarkerSymbol = {  
         type: "simple-marker",
         style: "diamond",  
@@ -51,9 +60,11 @@
         width: 1
       }  
       };
-      const pointGraphic = new Graphic({  
+      const pointGraphic = new Graphic({  //Create a graphic and add the geometry and symbol to it
       geometry: point,  
-      symbol: simpleMarkerSymbol  
+      symbol: simpleMarkerSymbol,
+      attributes: attributes, // attributes for popupTemplate
+      popupTemplate: popupTemplate  
       });
 
       graphicsLayer.add(pointGraphic);
