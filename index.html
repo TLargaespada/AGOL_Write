@@ -138,8 +138,14 @@
 
       });
 
-
       map.add(OSHAWorkInjuries)
+
+      //Adding Feature Layer
+      const USAirports = new FeatureLayer({
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports/FeatureServer", //get URL from AGOL Item Page
+      });
+    
+      map.add(USAirports)
 
     });
 
