@@ -21,8 +21,9 @@
       "esri/Graphic",
       "esri/layers/GraphicsLayer",
       "esri/geometry/Polyline",
-      "esri/geometry/Polygon"
-    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon) {
+      "esri/geometry/Polygon",
+      "esri/layers/FeatureLayer",
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer) {
 
       esriConfig.apiKey = "AAPK0bcf3be97f2f477b847094cc3f93a15bFUqgC48X1eCFBejkZZxhltF6wYGP8yCnJLEWyFcqBmpG88NVXD_PgTB-NFvT_xUG";
       const map = new Map({
@@ -123,6 +124,11 @@
   graphicsLayer.add(polygonGraphic);
   });
       
+  //Adding Feature Layer
+  const USAEVChargeStations = new FeatureLayer({
+  url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/Alternate_Fuel/FeatureServer" //get URL from AGOL Item Page
+  });
+  map.add(USAEVChargeStations);
 
   </script>
 
