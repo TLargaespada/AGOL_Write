@@ -18,8 +18,10 @@
       "esri/Map",
       "esri/views/MapView",
       "esri/Graphic",
-      "esri/layers/GraphicsLayer"
-    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer) {
+      "esri/layers/GraphicsLayer",
+      "esri/geometry/Polyline",
+      "esri/geometry/Polygon"
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon) {
 
       esriConfig.apiKey = "AAPK0bcf3be97f2f477b847094cc3f93a15bFUqgC48X1eCFBejkZZxhltF6wYGP8yCnJLEWyFcqBmpG88NVXD_PgTB-NFvT_xUG";
       const map = new Map({
@@ -68,6 +70,20 @@
       });
 
       graphicsLayer.add(pointGraphic);
+
+      const paths = [  
+        [  
+          [-80.605659, 28.396837],  
+          [-80.605659, 28.396840]  
+        ]  
+      ];
+      
+      const polyline = ({
+      hasZ: false,
+      hasM: false,
+      paths: paths,
+      spatialReference: { wkid: 4326 }
+}); 
 
     });
 
