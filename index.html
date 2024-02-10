@@ -125,7 +125,7 @@
 
       const PopUpOSHA = {
         "title": "Workplace Injuries",
-        "content": "<b>Employer:</b> {USER_Employer}<br><b>Event Title:</b> {USER_EventTitle}<br>"
+        "content": "<b>Employer:</b> {USER_Employer}<br><b>Event Title:</b> {USER_EventTitle}<br><b>Event Date:</b> {USER_EventDate}<br>"
       }
 
       //Adding Feature Layer
@@ -133,7 +133,7 @@
         url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Severe_Injury_2015_present_1/FeatureServer", //get URL from AGOL Item Page
 
 
-        outFields: ["USER_Employer", "USER_EventTitle"],
+        outFields: ["USER_Employer", "USER_EventTitle", "USER_EventDate"],
         popupTemplate: PopUpOSHA
 
       });
