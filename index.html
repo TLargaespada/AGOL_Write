@@ -35,7 +35,7 @@
       const view = new MapView({
         map: map,
         center: [-80.605659, 28.396837], // Longitude, latitude
-        zoom: 5, // Zoom level
+        zoom: 12, // Zoom level
         container: "viewDiv" // Div element
       });
 
@@ -93,7 +93,36 @@
 
       graphicsLayer.add(polylineGraphic);
 
-    });
+      const polygon = new Polygon({
+      rings: [
+      [ // each array in rings represents a ring. Each array in a ring represents a point (longitude, latitude).
+        [-80.57, 28.47],
+        [-80.57, 28.45],
+        [-80.55, 28.45],
+        [-80.55, 28.47],
+        [-80.56, 28.48],
+        [-80.57, 28.47] // last point should be the same as the first to close the ring
+      ]
+    ]
+  });
+
+    const polygonSymbol = {
+    type: "simple-fill", // autocasts as new SimpleFillSymbol()
+    color: [255, 192, 203, 0.8], //pink
+    outline: { // autocasts as new SimpleLineSymbol()
+      color: [255, 255, 255],
+      width: 3
+    }
+  };
+
+    const polygonGraphic = new Graphic({
+    geometry: polygon,
+    symbol: polygonSymbol
+  });
+
+  graphicsLayer.add(polygonGraphic);
+  });
+      
 
   </script>
 
