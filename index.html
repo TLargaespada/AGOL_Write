@@ -123,11 +123,22 @@
 
       graphicsLayer.add(polygonGraphic);
 
+      const PopUpOSHA = {
+        "title": "Workplace Injuries",
+        "content": "<b>Employer:</b> {USER_Employer}<br><b>Event Title:</b> {USER_EventTitle}<br>"
+      }
+
       //Adding Feature Layer
       const OSHAWorkInjuries = new FeatureLayer({
-      url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Severe_Injury_2015_present_1/FeatureServer", //get URL from AGOL Item Page
+        url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Severe_Injury_2015_present_1/FeatureServer", //get URL from AGOL Item Page
+
+
+        outFields: ["USER_Employer", "USER_EventTitle"],
+        popupTemplate: PopUpOSHA
+
       });
-      
+
+
       map.add(OSHAWorkInjuries)
 
     });
