@@ -74,61 +74,63 @@
       graphicsLayer.add(pointGraphic);
 
       const polyline = new Polyline({
-      paths: [
-      [-80.562492, 28.443951], // longitude, latitude
-      [-80.535683, 28.459619],
-      [-80.547065, 28.488277]  // longitude, latitude
-      ]
+        paths: [
+          [-80.562492, 28.443951], // longitude, latitude
+          [-80.535683, 28.459619],
+          [-80.547065, 28.488277]  // longitude, latitude
+        ]
       });
 
       const polylineSymbol = {
-      type: "simple-line",
-      color: [226, 119, 40],
-      width: 8
+        type: "simple-line",
+        color: [226, 119, 40],
+        width: 8
       };
 
       const polylineGraphic = new Graphic({
-      geometry: polyline,
-      symbol: polylineSymbol
+        geometry: polyline,
+        symbol: polylineSymbol
       });
 
       graphicsLayer.add(polylineGraphic);
 
       const polygon = new Polygon({
-      rings: [
-      [ // each array in rings represents a ring. Each array in a ring represents a point (longitude, latitude).
-        [-80.57, 28.47],
-        [-80.57, 28.45],
-        [-80.55, 28.45],
-        [-80.55, 28.47],
-        [-80.56, 28.48],
-        [-80.57, 28.47] // last point should be the same as the first to close the ring
-      ]
-    ]
-  });
+        rings: [
+          [ // each array in rings represents a ring. Each array in a ring represents a point (longitude, latitude).
+            [-80.57, 28.47],
+            [-80.57, 28.45],
+            [-80.55, 28.45],
+            [-80.55, 28.47],
+            [-80.56, 28.48],
+            [-80.57, 28.47] // last point should be the same as the first to close the ring
+          ]
+        ]
+      });
 
-    const polygonSymbol = {
-    type: "simple-fill", // autocasts as new SimpleFillSymbol()
-    color: [255, 192, 203, 0.8], //pink
-    outline: { // autocasts as new SimpleLineSymbol()
-      color: [255, 255, 255],
-      width: 3
-    }
-  };
+      const polygonSymbol = {
+        type: "simple-fill", // autocasts as new SimpleFillSymbol()
+        color: [255, 192, 203, 0.8], //pink
+        outline: { // autocasts as new SimpleLineSymbol()
+          color: [255, 255, 255],
+          width: 3
+        }
+      };
 
-    const polygonGraphic = new Graphic({
-    geometry: polygon,
-    symbol: polygonSymbol
-  });
+      const polygonGraphic = new Graphic({
+        geometry: polygon,
+        symbol: polygonSymbol
+      });
 
-  graphicsLayer.add(polygonGraphic);
-  });
+      graphicsLayer.add(polygonGraphic);
+
+      //Adding Feature Layer
+      const EVChargeStations = new FeatureLayer({
+        url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/Alternate_Fuel/FeatureServer", //get URL from AGOL Item Page
+      });
       
-  //Adding Feature Layer
-  const USAEVChargeStations = new FeatureLayer({
-  url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/Alternate_Fuel/FeatureServer" //get URL from AGOL Item Page
-  });
-  map.add(USAEVChargeStations);
+      map.add(EVChargeStations);
+
+    });
 
   </script>
 
