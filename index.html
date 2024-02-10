@@ -124,11 +124,11 @@
       graphicsLayer.add(polygonGraphic);
 
       //Adding Feature Layer
-      const EVChargeStations = new FeatureLayer({
-        url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/Alternate_Fuel/FeatureServer", //get URL from AGOL Item Page
+      const OSHAWorkInjuries = new FeatureLayer({
+      url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Severe_Injury_2015_present_1/FeatureServer", //get URL from AGOL Item Page
       });
       
-      map.add(EVChargeStations);
+      map.add(OSHAWorkInjuries)
 
     });
 
