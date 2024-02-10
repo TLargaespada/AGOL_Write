@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Hello, AGOL!</title>
   <meta charset="UTF-8" />
@@ -12,9 +13,9 @@
 
   <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
   <script>
-  
+
     require([
-     "esri/config",
+      "esri/config",
       "esri/Map",
       "esri/views/MapView",
       "esri/Graphic",
@@ -28,62 +29,69 @@
         basemap: "arcgis-terrain" // Basemap layer
       });
 
-      const graphicsLayer = new GraphicsLayer();  
-        map.add(graphicsLayer);
+      const graphicsLayer = new GraphicsLayer();
+      map.add(graphicsLayer);
 
       const view = new MapView({
-          map: map,
-          center: [	-80.605659, 28.396837], // Longitude, latitude
-          zoom: 5, // Zoom level
-          container: "viewDiv" // Div element
-        });
+        map: map,
+        center: [-80.605659, 28.396837], // Longitude, latitude
+        zoom: 5, // Zoom level
+        container: "viewDiv" // Div element
+      });
 
-        const point = { //Create a point  
-        type: "point",  
-        longitude:	-80.605659, //long lat of Cape Canaveral
-        latitude:28.396837
-        };
+      const point = { //Create a point  
+        type: "point",
+        longitude: -80.605659, //long lat of Cape Canaveral
+        latitude: 28.396837
+      };
 
-        const popupTemplate = {
+      const popupTemplate = {
         title: "{Name}",
         content: "{Description}"
-        }
-        const attributes = {
+      }
+      const attributes = {
         Name: "Kennedy Space Center",
         Description: "February 22, 2024 - SpaceX sends crew to the International Space Station."
-        };
+      };
 
-        const simpleMarkerSymbol = {  
+      const simpleMarkerSymbol = {
         type: "simple-marker",
-        style: "diamond",  
+        style: "diamond",
         color: "purple",
-        outline: {  
-        color: [255, 255, 255], // White  
-        width: 1
-      }  
+        outline: {
+          color: [255, 255, 255], // White  
+          width: 1
+        }
       };
       const pointGraphic = new Graphic({  //Create a graphic and add the geometry and symbol to it
-      geometry: point,  
-      symbol: simpleMarkerSymbol,
-      attributes: attributes, // attributes for popupTemplate
-      popupTemplate: popupTemplate  
+        geometry: point,
+        symbol: simpleMarkerSymbol,
+        attributes: attributes, // attributes for popupTemplate
+        popupTemplate: popupTemplate
       });
 
       graphicsLayer.add(pointGraphic);
 
-      const paths = [  
-        [  
-          [-80.605659, 28.396837],  
-          [-80.605659, 28.396840]  
-        ]  
-      ];
-      
-      const polyline = ({
-      hasZ: false,
-      hasM: false,
-      paths: paths,
-      spatialReference: { wkid: 4326 }
-}); 
+      const polyline = new Polyline({
+      paths: [
+      [-80.562492, 28.443951], // longitude, latitude
+      [-80.535683, 28.459619],
+      [-80.547065, 28.488277]  // longitude, latitude
+      ]
+      });
+
+      const polylineSymbol = {
+      type: "simple-line",
+      color: [226, 119, 40],
+      width: 8
+      };
+
+      const polylineGraphic = new Graphic({
+      geometry: polyline,
+      symbol: polylineSymbol
+      });
+
+      graphicsLayer.add(polylineGraphic);
 
     });
 
@@ -102,10 +110,12 @@
   </style>
 
 </head>
+
 <body>
 
   <!-- the div to displays the map  -->
   <div id="viewDiv"></div>
 
 </body>
+
 </html>
