@@ -144,7 +144,7 @@
       const USAirports = new FeatureLayer({
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports/FeatureServer", //get URL from AGOL Item Page
       });
-    
+
       map.add(USAirports)
 
       //setting up the airport icon
@@ -159,13 +159,34 @@
         }
       }
 
+      //const to make the airport labels
+      const airportLabels = {
+        symbol: {
+          type: "text",
+          color: "#FFFFFF",
+          haloColor: "#5E8D74",
+          haloSize: "2px",
+          font: {
+            size: "12px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.Fac_Name"
+        }
+      };
+
+
       const airportLayer = new FeatureLayer({
-          url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports/FeatureServer",
-          renderer: airportRenderer, //calling the airport icon
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports/FeatureServer",
+        renderer: airportRenderer, //calling the airport icon
 
-          definitionExpression: "Fac_Type = 'AIRPORT'" //adding sql to filter for airports
-
-        });
+        definitionExpression: "Fac_Type = 'AIRPORT'", //adding sql to filter for airports
+        labelingInfo: [airportLabels] //adding the labels to the airports
+      });
 
       //adding the feature layer to the map
       map.add(airportLayer);
