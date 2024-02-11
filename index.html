@@ -147,6 +147,26 @@
     
       map.add(USAirports)
 
+      //setting up the airport icon
+
+      const airportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "https://tlargaespada.github.io/AGOL/outline_local_airport_black_24dp.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
+      const airportLayer = new FeatureLayer({
+          url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports/FeatureServer",
+          renderer: airportRenderer
+        });
+
+      //adding the feature layer to the map
+      map.add(airportLayer);
+
     });
 
   </script>
