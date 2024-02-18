@@ -1,2 +1,2 @@
 # ESRI JS with ArcGIS Online
-My first Esri JS Map
+Write and read with JS and ArcGIS online using REST APIs
