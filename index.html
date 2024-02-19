@@ -24,7 +24,8 @@
       "esri/geometry/Polygon",
       "esri/layers/FeatureLayer",
       "esri/widgets/Editor",
-    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor) {
+      "esri/widgets/Legend"
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor, Legend) {
 
       esriConfig.apiKey = "AAPK0bcf3be97f2f477b847094cc3f93a15bFUqgC48X1eCFBejkZZxhltF6wYGP8yCnJLEWyFcqBmpG88NVXD_PgTB-NFvT_xUG";
       const map = new Map({
@@ -258,7 +259,7 @@
       }); // End Editor constructor
 
       // Add the widget to the view
-      view.ui.add(editor, "top-right");
+      view.ui.add(editor, "bottom-left");
 
       //adding different icon and airport code label
 
@@ -302,9 +303,23 @@
       //adding the feature layer to the map
       map.add(AirportCodeLayer);
 
+      //Adding Legend
 
-
-
+      const legend = new Legend({
+        view: view,
+        layerInfos: [
+          {
+            layer: OSHAWorkInjuries,
+            title: "Workplace Injuries"
+          },
+          {
+            layer: USAirports,
+            title: "US Airports"
+          }
+        ]        
+      });
+      
+      view.ui.add(legend, "bottom-right");
 
     });
 
