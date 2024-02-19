@@ -24,8 +24,9 @@
       "esri/geometry/Polygon",
       "esri/layers/FeatureLayer",
       "esri/widgets/Editor",
-      "esri/widgets/Legend"
-    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor, Legend) {
+      "esri/widgets/Legend",
+      "esri/widgets/LayerList"
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor, Legend, LayerList) {
 
       esriConfig.apiKey = "AAPK0bcf3be97f2f477b847094cc3f93a15bFUqgC48X1eCFBejkZZxhltF6wYGP8yCnJLEWyFcqBmpG88NVXD_PgTB-NFvT_xUG";
       const map = new Map({
@@ -320,6 +321,22 @@
       });
       
       view.ui.add(legend, "bottom-right");
+
+      const layerList = new LayerList({
+          view: view,
+          listItemCreatedFunction: (event) => {
+            const item = event.item;
+            if (item.layer.type != "group") {
+              // don't show legend twice
+              item.panel = {
+                content: "legend",
+                open: true
+              };
+            }
+          }
+        });
+        view.ui.add(layerList, "top-right");
+    
 
     });
 
