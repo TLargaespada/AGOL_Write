@@ -23,7 +23,8 @@
       "esri/geometry/Polyline",
       "esri/geometry/Polygon",
       "esri/layers/FeatureLayer",
-    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer) {
+      "esri/widgets/Editor",
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor) {
 
       esriConfig.apiKey = "AAPK0bcf3be97f2f477b847094cc3f93a15bFUqgC48X1eCFBejkZZxhltF6wYGP8yCnJLEWyFcqBmpG88NVXD_PgTB-NFvT_xUG";
       const map = new Map({
@@ -233,6 +234,34 @@
 
       //adding the feature layer to the map
       map.add(HeliportLayer);
+
+      //adding the const for the feature layer
+      const myAirports = new FeatureLayer({
+      url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_by_TL/FeatureServer",
+      
+      //adding the popup here
+      outFields: ["AirportCode"],
+
+      });
+
+      //adding the feature layer to the map
+      map.add(myAirports);
+
+      // Set the point layer's LayerInfo
+      const pointInfos = {
+      layer: myAirports
+      }
+
+      // Begin Editor constructor
+      const editor = new Editor({
+      view: view,
+      layerInfos: [pointInfos]
+      }); // End Editor constructor
+
+      // Add the widget to the view
+      view.ui.add(editor, "top-right");
+
+
 
     });
 
