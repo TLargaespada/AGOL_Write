@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Hello, AGOL!</title>
+  <title>AGOL Write!</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
@@ -227,7 +227,6 @@
       const HeliportLayer = new FeatureLayer({
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports/FeatureServer",
         renderer: HeliportRenderer, //calling the Heliport icon
-
         definitionExpression: "Fac_Type = 'HELIPORT'", //adding sql to filter for Heliports
         labelingInfo: [HeliportLabels] //adding the labels to the Heliports
       });
@@ -267,7 +266,7 @@
         "type": "simple",
         "symbol": {
           "type": "picture-marker",
-          "url": "https://tlargaespada.github.io/AGOL/outline_local_airport_black_24dp.png",
+          "url": " https://tlargaespada.github.io/AGOL_Write/star.png",
           "width": "18px",
           "height": "18px"
         }
@@ -277,14 +276,14 @@
       const AirportCodeLabel = {
         symbol: {
           type: "text",
-          color: "#FFFFFF",
-          haloColor: "#5E8D74",
+          color: "#FFFF00",
+          haloColor: "#000000",
           haloSize: "2px",
           font: {
-            size: "12px",
-            family: "Noto Sans",
+            size: "16px",
+            family: "Comic Sans",
             style: "italic",
-            weight: "normal"
+            weight: "bold"
           }
         },
         labelPlacement: "above-center",
@@ -297,7 +296,7 @@
       const AirportCodeLayer = new FeatureLayer({
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_by_TL/FeatureServer",
         renderer: AirportCodeRenderer, //calling the airport icon
-
+        labelingInfo: [AirportCodeLabel]
       });
 
       //adding the feature layer to the map
